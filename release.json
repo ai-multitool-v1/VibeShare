@@ -1,0 +1,8 @@
+{
+  "versionCode": 1,
+  "versionName": "1.0.0",
+  "apkUrl": "https://github.com/ai-multitool-v1/VibeShare/releases/download/v1.0.0/app-release.apk",
+  "sha256": "PENDING-FIRST-RELEASE",
+  "releaseNotes": "VibeShare 1.0.0 (SETBD) — first public release. Wi-Fi Direct + Local Wi-Fi transfer, QR/PIN pairing, multi-device fan-out, APK sharing, encrypted streaming (AES-256-GCM), resume/retry, local history, in-app updater.",
+  "fileSize": 0
+}
