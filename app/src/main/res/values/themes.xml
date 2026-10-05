@@ -5,4 +5,13 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
+
+    <!-- Launch theme required by androidx.core.splashscreen. The activity theme
+         must descend from Theme.SplashScreen and declare postSplashScreenTheme,
+         otherwise installSplashScreen() crashes on API < 31. -->
+    <style name="Theme.VibeShare.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/vibe_background</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+        <item name="postSplashScreenTheme">@style/Theme.VibeShare</item>
+    </style>
 </resources>
