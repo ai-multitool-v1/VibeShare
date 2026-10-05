@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- VibeShare launcher foreground: two opposing arcs with a lightning exchange
+     glyph. Original artwork for SETBD. Renders inside the adaptive-icon safe
+     zone (108dp viewport, content within central 66dp). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Soft radial glow behind the glyph -->
+    <path android:pathData="M54,54m-30,0a30,30 0,1 1,60 0a30,30 0,1 1,-60 0">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:type="radial"
+                android:centerX="54"
+                android:centerY="54"
+                android:gradientRadius="30">
+                <item android:offset="0" android:color="#337C5CFF" />
+                <item android:offset="1" android:color="#007C5CFF" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Upper arrow (send): sweeping arc to the right -->
+    <path
+        android:pathData="M34,44 C34,33.5 42.5,26 53,26 L58,26 L52,17 L70,17 L58,32 L53,32 C46,32 40.5,37 40.5,44 Z"
+        android:fillColor="#FF7C5CFF" />
+
+    <!-- Lower arrow (receive): mirrored sweep to the left -->
+    <path
+        android:pathData="M74,64 C74,74.5 65.5,82 55,82 L50,82 L56,91 L38,91 L50,76 L55,76 C62,76 67.5,71 67.5,64 Z"
+        android:fillColor="#FF22E4FF" />
+
+    <!-- Central bolt connecting the exchange -->
+    <path
+        android:pathData="M56,42 L45,57 L52,57 L48,68 L62,52 L54.5,52 Z"
+        android:fillColor="#FFFFFFFF" />
+</vector>

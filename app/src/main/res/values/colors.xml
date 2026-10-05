@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="vibe_background">#FF0B0E1A</color>
+    <color name="vibe_violet">#FF7C5CFF</color>
+    <color name="vibe_cyan">#FF22E4FF</color>
+    <color name="vibe_launcher_background">#FF12162B</color>
+</resources>

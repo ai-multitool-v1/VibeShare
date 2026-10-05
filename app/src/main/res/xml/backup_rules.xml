@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <!-- Never back up pairing/session state; history + settings are safe. -->
+    <exclude domain="sharedpref" path="vibeshare_device.xml" />
+</full-backup-content>

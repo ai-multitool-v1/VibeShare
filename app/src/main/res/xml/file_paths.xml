@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <cache-path name="apk_export" path="apk_export/" />
+    <cache-path name="updates" path="." />
+    <external-files-path name="received" path="Received/" />
+</paths>

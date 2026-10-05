@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">VibeShare</string>
+    <string name="brand_tag">SETBD</string>
+    <string name="privacy_line">Your files stay on your devices.</string>
+    <string name="channel_transfers">Transfers</string>
+    <string name="channel_transfers_desc">Progress for active file transfers</string>
+    <string name="service_waiting">Keeping your transfer session alive</string>
+    <string name="service_receiving_ready">Ready to receive · waiting for a sender</string>
+    <string name="service_receiving_from">Receiving from %1$s</string>
+    <string name="service_sending">Sending to %1$s: %2$s / %3$s (%4$d%%) · %5$s</string>
+    <string name="action_pause">Pause</string>
+    <string name="action_resume">Resume</string>
+    <string name="action_cancel">Cancel</string>
+</resources>
