@@ -2,8 +2,8 @@ package com.setbd.vibeshare.discovery.auto
 
 import android.content.Context
 import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
 import android.net.wifi.WifiManager
+import android.net.NetworkCapabilities
 import com.setbd.vibeshare.core.log.VibeLog
 import com.setbd.vibeshare.domain.model.TransferMode
 
@@ -24,10 +24,8 @@ class AutoTransportSelector(private val context: Context) {
             caps.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)
     }
 
-    fun wifiDirectSupported(): Boolean {
-        val wm = context.getSystemService(Context.WIFI_P2P_SERVICE) as? WifiManager
-        return wm != null || context.packageManager.hasSystemFeature("android.hardware.wifi.direct")
-    }
+    fun wifiDirectSupported(): Boolean =
+        context.packageManager.hasSystemFeature(android.content.pm.PackageManager.FEATURE_WIFI_DIRECT)
 
     fun wifiEnabled(): Boolean {
         val wm = context.getSystemService(Context.WIFI_SERVICE) as? WifiManager ?: return false

@@ -24,9 +24,9 @@ class AndroidAppsRepository(private val context: Context) : AppsRepository {
 
     override suspend fun listInstalledApps(includeSystemUpdates: Boolean): List<InstalledApp> {
         val pm = context.packageManager
-        val packages: List<PackageInfo> = runCatching {
+        val packages: List<PackageInfo> = if (android.os.Build.VERSION.SDK_INT >= 33) {
             pm.getInstalledPackages(PackageManager.PackageInfoFlags.of(0L))
-        }.getOrElse {
+        } else {
             @Suppress("DEPRECATION")
             pm.getInstalledPackages(0)
         }
@@ -42,7 +42,8 @@ class AndroidAppsRepository(private val context: Context) : AppsRepository {
                 packageName = info.packageName,
                 appName = app.loadLabel(pm).toString(),
                 versionName = info.versionName ?: "",
-                versionCode = info.longVersionCode,
+                versionCode = if (android.os.Build.VERSION.SDK_INT >= 28) info.longVersionCode
+                else @Suppress("DEPRECATION") info.versionCode.toLong(),
                 apkSizeBytes = runCatching { File(app.sourceDir ?: "").length() }.getOrDefault(0L),
                 isSplit = split,
             )
