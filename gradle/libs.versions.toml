@@ -19,6 +19,9 @@ zxingCore = "3.5.3"
 zxingEmbedded = "4.3.0"
 documentfile = "1.0.1"
 junit = "4.13.2"
+robolectric = "4.14.1"
+androidxTestCore = "1.6.1"
+androidxTestJunit = "1.2.1"
 
 [libraries]
 # Kotlin / coroutines
@@ -63,6 +66,12 @@ androidx-work-runtime = { group = "androidx.work", name = "work-runtime-ktx", ve
 koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
 koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
 koin-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin" }
+
+# Instrumented-style JVM tests (Robolectric)
+robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "robolectric" }
+androidx-test-core = { group = "androidx.test", name = "core-ktx", version.ref = "androidxTestCore" }
+androidx-test-junit = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "androidxTestJunit" }
+compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 
 # QR
 zxing-core = { group = "com.google.zxing", name = "core", version.ref = "zxingCore" }
