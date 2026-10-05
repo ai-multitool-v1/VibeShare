@@ -1,8 +1,8 @@
 {
-  "versionCode": 1,
-  "versionName": "1.0.0",
-  "apkUrl": "https://github.com/ai-multitool-v1/VibeShare/releases/download/v1.0.0/app-release.apk",
-  "sha256": "beeb62170437f684365fcfa2c7724d1a49ee394e0e2b41b3097f32ebb74321e7",
-  "releaseNotes": "VibeShare 1.0.0 (SETBD) \u2014 first public release. Wi-Fi Direct + Local Wi-Fi transfer, QR/PIN pairing, multi-device fan-out, APK sharing, encrypted streaming (AES-256-GCM), resume/retry, local history, in-app updater.",
-  "fileSize": 13501154
+  "versionCode": 2,
+  "versionName": "1.0.1",
+  "apkUrl": "https://github.com/ai-multitool-v1/VibeShare/releases/download/v1.0.1/app-release.apk",
+  "sha256": "5a2c5267fb2425c6d8ed60328d9d2883264802ca70246ca610622effe9e607af",
+  "releaseNotes": "VibeShare 1.0.1 (SETBD) — stability release: fixes the startup crash on launch (missing ViewModel bindings in the dependency graph, splash-screen theme crash on Android 11 and below) and adds legacy launcher icon fallbacks for Android 7.x.",
+  "fileSize": 13565538
 }
