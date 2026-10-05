@@ -25,10 +25,23 @@ import com.setbd.vibeshare.pairing.session.SessionRegistry
 import com.setbd.vibeshare.storage.AndroidIncomingStorage
 import com.setbd.vibeshare.storage.VibeStorageRepository
 import com.setbd.vibeshare.app.transfer.TransferCoordinator
+import com.setbd.vibeshare.app.ui.screens.AppsViewModel
+import com.setbd.vibeshare.app.ui.screens.BuildVersion
+import com.setbd.vibeshare.app.ui.screens.DevModeSink
+import com.setbd.vibeshare.app.ui.screens.DevViewModel
+import com.setbd.vibeshare.app.ui.screens.HistoryViewModel
+import com.setbd.vibeshare.app.ui.screens.HomeViewModel
+import com.setbd.vibeshare.app.ui.screens.ReceiveViewModel
+import com.setbd.vibeshare.app.ui.screens.SendViewModel
+import com.setbd.vibeshare.app.ui.screens.SettingsViewModel
+import com.setbd.vibeshare.app.updater.UpdateManager
+import com.setbd.vibeshare.domain.usecase.ManageHistoryUseCase
 import com.setbd.vibeshare.transfer.model.IncomingStorage
 import kotlinx.coroutines.flow.first
 import org.koin.android.ext.koin.androidContext
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
+import org.koin.dsl.bind
 import org.koin.dsl.module
 
 /** Single Koin graph for the whole application. */
@@ -37,8 +50,10 @@ fun initKoin(): List<Module> = listOf(platformModules)
 private val platformModules = module {
     single<DispatcherProvider> { DefaultDispatcherProvider() }
 
-    /** Application context for non-Koin-aware consumers. */
-    single<Context> { androidContext() }
+    // NOTE: the Android Context is auto-registered by koin-android when
+    // startKoin { androidContext(...) } runs. Do NOT re-declare
+    // `single<Context> { androidContext() }` — in koin-android 4.x
+    // androidContext() resolves get<Context>(), which recursed infinitely.
 
     single<SettingsRepository> { DataStoreSettingsRepository(androidContext()) }
 
@@ -69,12 +84,16 @@ private val platformModules = module {
 
     single<AutoTransportSelector> { AutoTransportSelector(androidContext()) }
 
-    single<DiscoveryRepository> {
-        AndroidDiscoveryRepository(androidContext(), get<AutoTransportSelector>())
-    }
+    // Bound to both the concrete type (used by screens) and the domain interface.
+    single { AndroidDiscoveryRepository(androidContext(), get<AutoTransportSelector>()) }
+        .bind(DiscoveryRepository::class)
 
     single<SessionRegistry> { SessionRegistry() }
     single<PendingApprovalBus> { PendingApprovalBus() }
+
+    single { UpdateManager(androidContext(), BuildVersion.CODE) }
+    single { DevModeSink() }
+    factory { ManageHistoryUseCase(get()) }
 
     single<DeviceInfo> {
         val context = androidContext()
@@ -106,6 +125,15 @@ private val platformModules = module {
             },
         )
     }
+
+    // ---- ViewModels (resolved via koinViewModel() in Compose screens) ----
+    viewModel { HomeViewModel(get(), get(), get()) }
+    viewModel { SendViewModel(get(), get(), get(), get()) }
+    viewModel { ReceiveViewModel(get(), get(), get(), get()) }
+    viewModel { SettingsViewModel(get(), get(), get()) }
+    viewModel { HistoryViewModel(get()) }
+    viewModel { AppsViewModel(get()) }
+    viewModel { DevViewModel(get(), get(), get(), get()) }
 }
 
 /** Stable, privacy-safe device identifier: a random install-scoped UUID. */
